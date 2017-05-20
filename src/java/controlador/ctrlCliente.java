@@ -14,7 +14,7 @@ import modelo.dao.ClienteDAO;
 import modelo.dominio.Conexion;
 import modelo.entidad.Cliente;
 
-
+//Este es un comentario por manuel
 @WebServlet(name = "ctrlCliente", urlPatterns = {"/ctrlCliente"})
 public class ctrlCliente extends HttpServlet {
 
