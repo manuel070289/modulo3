@@ -3,35 +3,32 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.dao.ClienteDAO;
+import modelo.dao.ProductoDAO;
 import modelo.dominio.Conexion;
-import modelo.entidad.Cliente;
+import modelo.entidad.Producto;
 
-//Este es un comentario por manuel
-@WebServlet(name = "ctrlCliente", urlPatterns = {"/ctrlCliente"})
-public class ctrlCliente extends HttpServlet {
+@WebServlet(name = "ctrlProducto", urlPatterns = {"/ctrlProducto"})
+public class ctrlProducto extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        try (PrintWriter out = response.getWriter()) {
+         try (PrintWriter out = response.getWriter()) {
            Conexion cn = new Conexion();
             String accion = request.getParameter("envio");
             if (accion != null){
-                ClienteDAO cd = new ClienteDAO(cn);
-               Cliente buscar =  cd.read(request.getParameter("codigo"));
-             response.sendRedirect("cliente.jsp?codigo="+buscar.getCodigo() + "&nombre="+buscar.getNombres()+ "&apellido="+buscar.getApellidos()+ "&direccion="+buscar.getDireccion()+ "&telefono="+buscar.getTelefono());
+                ProductoDAO cd = new ProductoDAO(cn);
+               Producto buscar =  cd.read(request.getParameter("codigo"));
+             response.sendRedirect("producto.jsp?codigo="+buscar.getCodigo() + "&precio="+buscar.getPrecio()+ "&descripcion="+buscar.getDescripcion()+ "&existencia="+buscar.getExistencia());
             }
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
